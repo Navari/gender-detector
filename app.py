@@ -4,7 +4,7 @@ from detector import main
 app = Flask(__name__, static_url_path='/static')
 
 
-@app.route('/<username>')
+@app.route('/check/<username>')
 def hello_world(username):
     print(username)
     response = main.run(username)
