@@ -74,5 +74,4 @@ def image_detector(image):
 
 def detect_face():
     data = image_detector("static/sample.png")
-    print(data)
     return data
