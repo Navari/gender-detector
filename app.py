@@ -8,6 +8,8 @@ app = Flask(__name__, static_url_path='/static')
 def hello_world(username):
     print(username)
     response = main.run(username)
+    if not response:
+        return jsonify({'error' : 'Instagram error'})
     return jsonify(response)
 
 

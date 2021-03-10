@@ -9,7 +9,9 @@ URL = "http://www.instagram.com/{}/?__a=1"
 def scrape_data(username):
     # getting the request from url
     r = requests.get(URL.format(username))
-    print(r)
+    print(r.status_code)
+    if r.status_code != 200:
+        return '';
     re = r.json()
     print(re)
     image_hd = re['graphql']['user']['profile_pic_url_hd']
@@ -25,5 +27,8 @@ def download_image(url):
 
 def run(username):
     d = scrape_data(username)
-    download_image(d)
-    return detect.detect_face()
+    if d != '':
+        download_image(d)
+        return detect.detect_face()
+    else:
+        return []
