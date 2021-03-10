@@ -11,7 +11,8 @@ def scrape_data(username):
     r = requests.get(URL.format(username))
     print(r.status_code)
     if r.status_code != 200:
-        return '';
+        print(r.content)
+        return ''
     re = r.json()
     print(re)
     image_hd = re['graphql']['user']['profile_pic_url_hd']
