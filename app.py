@@ -6,6 +6,7 @@ app = Flask(__name__, static_url_path='/static')
 
 @app.route('/<username>')
 def hello_world(username):
+    print(username)
     response = main.run(username)
     return jsonify(response)
 
