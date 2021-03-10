@@ -16,6 +16,7 @@ session.proxies.update(proxies)
 def scrape_data(username):
     # getting the request from url
     r = session.get(URL.format(username))
+    print(URL.format(username))
     print(r.status_code)
     if r.status_code != 200:
         print(r.content)
