@@ -2,7 +2,7 @@ import requests
 from detector import detect
 
 # instagram URL
-URL = "http://www.instagram.com/{}/?__a=1"
+URL = "https://www.instagram.com/{}/?__a=1"
 
 
 # scrape function
