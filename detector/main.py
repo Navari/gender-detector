@@ -4,11 +4,18 @@ from detector import detect
 # instagram URL
 URL = "https://www.instagram.com/{}/?__a=1"
 
+proxies = {
+    'http': 'http://uwtpptej-dest:gzz8s03me3jp@45.15.223.0:9018',
+    'https': 'https://uwtpptej-dest:gzz8s03me3jp@45.15.223.0:9018',
+}
+session = requests.Session()
+session.proxies.update(proxies)
+
 
 # scrape function
 def scrape_data(username):
     # getting the request from url
-    r = requests.get(URL.format(username))
+    r = session.get(URL.format(username))
     print(r.status_code)
     if r.status_code != 200:
         print(r.content)
@@ -20,7 +27,7 @@ def scrape_data(username):
 
 
 def download_image(url):
-    r = requests.get(url)
+    r = session.get(url)
     file = open("static/sample.png", "wb")
     file.write(r.content)
     file.close()
