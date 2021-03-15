@@ -1,17 +1,25 @@
 import requests
 from detector import detect
+from bs4 import BeautifulSoup 
 
 # instagram URL
-URL = "https://www.instagram.com/{}/?__a=1"
+URL = "https://www.instagram.com/{}/"
 
 
 # scrape function
-def scrape_data(username):
-    # getting the request from url
-    r = requests.get(URL.format(username))
-    re = r.json()
-    image_hd = re['graphql']['user']['profile_pic_url_hd']
-    return image_hd
+def scrape_data(username): 
+      
+    # getting the request from url 
+    r = requests.get(URL.format(username)) 
+      
+    # converting the text 
+    s = BeautifulSoup(r.text, "html.parser") 
+      
+    # finding meta info 
+    meta = s.find("meta", property ="og:image") 
+      
+    # calling parse method 
+    return parse_data(meta.attrs['content']) 
 
 
 def download_image(url):
