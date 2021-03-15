@@ -6,7 +6,7 @@ app = Flask(__name__, static_url_path='/static')
 
 @app.route('/<username>')
 def hello_world(username):
-    if username != 'favicon':
+    if username != 'favicon.ico':
         response = main.run(username)
         return jsonify(response)
 
