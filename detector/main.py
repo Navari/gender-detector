@@ -9,16 +9,13 @@ URL = "https://www.instagram.com/{}/"
 # scrape function
 def scrape_data(username): 
       
-    # getting the request from url 
     r = requests.get(URL.format(username)) 
       
-    # converting the text 
     s = BeautifulSoup(r.text, "html.parser") 
       
-    # finding meta info 
-    meta = s.find("meta", property ="og:image") 
-      
-    # calling parse method 
+    meta = s.find("meta", property ="og:image")
+    print(meta)
+    
     return meta.attrs['content'] 
 
 
