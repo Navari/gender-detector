@@ -19,7 +19,7 @@ def scrape_data(username):
     meta = s.find("meta", property ="og:image") 
       
     # calling parse method 
-    return parse_data(meta.attrs['content']) 
+    return meta.attrs['content'] 
 
 
 def download_image(url):
