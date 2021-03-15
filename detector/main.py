@@ -13,7 +13,7 @@ def scrape_data(username):
       
     s = BeautifulSoup(r.text, "html.parser") 
       
-    meta = s.find("meta")
+    meta = s.find("meta", property="og:description")
     print(meta)
     
     return meta.attrs['content'] 
