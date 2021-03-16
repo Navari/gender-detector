@@ -10,7 +10,6 @@ genderModel = "gender_net.caffemodel"
 MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
 ageList = ['(0-2)', '(4-6)', '(8-12)', '(15-20)', '(25-32)', '(38-43)', '(48-53)', '(60-100)']
 genderList = ['Male', 'Female']
-return_value = {"gender": "not_detected", "age": "not_detected", "highlighted_image": "not_detected.png"}
 padding = 20
 
 
@@ -36,6 +35,7 @@ def highlightFace(net, frame, conf_threshold=0.7):
 
 
 def image_detector(image):
+    return_value = {"gender": "not_detected", "age": "not_detected", "highlighted_image": "not_detected.png"}
     video = cv2.VideoCapture(image if image else 0)
     faceNet = cv2.dnn.readNet(faceModel, faceProto)
     ageNet = cv2.dnn.readNet(ageModel, ageProto)
@@ -43,11 +43,11 @@ def image_detector(image):
     hasFrame, frame = video.read()
     if not hasFrame:
         cv2.waitKey()
-        return return_value
+        return {"gender": "not_detected", "age": "not_detected", "highlighted_image": "not_detected.png"}
 
     resultImg, faceBoxes = highlightFace(faceNet, frame)
     if not faceBoxes:
-        return return_value
+        return {"gender": "not_detected", "age": "not_detected", "highlighted_image": "not_detected.png"}
 
     for faceBox in faceBoxes:
         face = frame[max(0, faceBox[1] - padding):
