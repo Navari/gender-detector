@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask,request, jsonify
 from detector import main
 
 app = Flask(__name__, static_url_path='/static')
